@@ -5,23 +5,30 @@ var App = React.createClass({
     },
 
     handleIngredients: function(event) {
-          console.log('---')
         this.setState({ingredients: !this.state.ingredients});
     },
     handleRecipes: function(event) {
         this.setState({recipes: !this.state.recipes});
     },
+      displayRecipes: function(e){
+      e.preventDefault();
+      var foodItem = React.findDOMNode(this.refs.foodItem).value.trim();
+      this.props.onRecipeSubmit({foodItem:foodItem});
+    },
     render: function() {
         var recipesText = this.state.recipes ? <AllRecipes handleIngredients={this.handleIngredients}/> : "";
         var ingredientsText = this.state.ingredients ? <Ingredients /> : "";
-        return (
-        <div>
-        <h1>Crisper searching stuff</h1>
-           <button onClick={this.handleRecipes} type="button" className="btn btn-default">Search for Chicken</button> 
-              {recipesText}                 
-              {ingredientsText}
-            </div>
-        );
+          return (
+              <div>
+                  <form>
+                      <h1 id="topOfList">Find Your Food:</h1>
+                      <input type="text" ref= "foodItem" className="" id="userText" placeholder="        Ingredients"/>
+                    <div>
+                      <button onClick={ this.displayRecipes } id="searchButton" className="btn btn-success">Get Recipes</button>
+                    </div>
+                  </form>
+              </div>
+            );
     }
   }),  
 
@@ -78,6 +85,14 @@ var RecipeBox = React.createClass({
         }
     }),
 
+var RecipeForm = React.createClass({
+  
+        render: function() {
+            
+        }
+    });
+
+// this is the displayed recipe list ---------------------
 var RecipeList = React.createClass({
   render: function() {
      var recipeData = this.props.data.map(function(r){
@@ -100,42 +115,20 @@ var RecipeList = React.createClass({
     return (
       <div>
         <div className="col-md-12 text-center">
-          
             <ul>
-              
                 {recipeData} 
             </ul>
         </div>
       </div>
-      );
+    );
   }
-})
-
-var RecipeForm = React.createClass({
-  handleSubmit: function(e){
-    e.preventDefault();
-    var foodItem = React.findDOMNode(this.refs.foodItem).value.trim();
-    this.props.onRecipeSubmit({foodItem:foodItem});
-    console.log(foodItem)
-  },
-        render: function() {
-            return (
-              <div>
-                  <form>
-                      <h1 id="topOfList">Find Your Food:</h1>
-                      <input type="text" ref= "foodItem" className="" id="userText" placeholder="        Ingredients"/>
-                    <div>
-                      <button onClick={ this.handleSubmit } id="searchButton" className="btn btn-success">Get Recipes</button>
-                    </div>
-                  </form>
-              </div>
-            );
-        }
-    });
+}),
 
 
 
-React.render(<RecipeBox url="/api/recipes/" url2="/api/recipe/"/>, document.getElementById('searchBar'));
+
+
+React.render(<App url="/api/recipes/" url2="/api/recipe/"/>, document.getElementById('searchBar'));
 
 
 
