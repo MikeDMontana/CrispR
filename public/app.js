@@ -1,6 +1,7 @@
 
 var IngredientList = React.createClass({
-  hello: function() {
+  render: function() {
+
      var ingredientData = this.props.data.map(function(r){
       console.log(r)
       return ( 
@@ -110,7 +111,7 @@ var RecipeBox = React.createClass({
       loadIngredientsFromServer: function(rId){
       console.log(rId);
       $.ajax({
-        url: this.props.url2 + rId,
+        url: "/api/recipe/" + rId,
         dataType: 'json',
         cache: false,
         success:function(data){
@@ -137,7 +138,7 @@ var RecipeBox = React.createClass({
         }
     });
 
-    React.render(<RecipeBox url="/api/recipes/" url2="/api/recipe/"/>, document.getElementById('searchBar'));
+    React.render(<RecipeBox url="/api/recipes/"/>, document.getElementById('searchBar'));
 
 
 
