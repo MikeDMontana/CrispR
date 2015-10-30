@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded());
 
 
 
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 3000);
 require('./config/passport')(passport); // pass passport for configuration
 //////////////////////////////////////////////////////////////////////////
 // set up our express application
