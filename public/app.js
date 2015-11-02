@@ -1,4 +1,68 @@
-var RecipeList = React.createClass({
+var App = React.createClass({
+
+    getInitialState: function() {
+        return {ingredients: false, recipes: false};
+    },
+
+    handleIngredients: function(event) {
+          console.log('---')
+        this.setState({ingredients: !this.state.ingredients});
+    },
+    handleRecipes: function(event) {
+        this.setState({recipes: !this.state.recipes});
+    },
+    render: function() {
+        var recipesText = this.state.recipes ? <AllRecipes handleIngredients={this.handleIngredients}/> : "";
+        var ingredientsText = this.state.ingredients ? <Ingredients /> : "";
+        return (
+        <div>
+        <h1>Crisper searching stuff</h1>
+           <button onClick={this.handleRecipes} type="button" className="btn btn-default">Search for Chicken</button> 
+              {recipesText}                 
+                  {ingredientsText}
+            </div>
+        );
+    }
+  })  
+
+  var AllRecipes = React.createClass({
+  
+      render: function() {
+        var ingredients = this.props.ingredients ? <Ingredients/> : null;
+          return (
+            <div>
+              <li> <h1> I am Recipes!!! </h1>
+                    <ul>chicken 1</ul>
+                    <ul>chicken 2</ul>
+                    <ul>checkin 3</ul>
+              </li>
+              <button onClick={this.props.handleIngredients} type="button" className="btn btn-default">Display Ingredients</button>
+              {ingredients}
+            </div>
+          );
+      }
+  })
+  
+  var Ingredients = React.createClass({
+        render: function() {
+          var text = (<div>
+                    <h1> I am Ingredients </h1>
+                          <ul>
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                          </ul>
+                    </div>);
+
+            return (
+                  <div>
+                    {text}
+                    </div>
+            );
+        }
+    });   
+
+var AllReturnedRecipes = React.createClass({
   render: function() {
      var recipeData = this.props.data.map(function(r){
       console.log(r)
@@ -16,16 +80,13 @@ var RecipeList = React.createClass({
                 </div>
             </div>
         </div>
-      );
-
-      
+      ); 
     })
+
     return (
       <div>
         <div className="col-md-12 text-center">
-          
             <ul>
-              
                 {recipeData} 
             </ul>
         </div>
@@ -34,7 +95,7 @@ var RecipeList = React.createClass({
   }
 })
 
-var RecipeForm = React.createClass({
+var SearchField = React.createClass({
   handleSubmit: function(e){
     e.preventDefault();
     var foodItem = React.findDOMNode(this.refs.foodItem).value.trim();
@@ -82,14 +143,15 @@ var RecipeBox = React.createClass({
         render: function() {
             return (
               <div>
-                <RecipeForm onRecipeSubmit={this.loadRecipesFromServer}/>
-                <RecipeList data={this.state.data}/>
+                <SearchField onRecipeSubmit={this.loadRecipesFromServer}/>
+                <AllReturnedRecipes data={this.state.data}/>
+                <App/>
               </div>
             );
         }
     });
 
-    React.render(<RecipeBox url="/api/recipes/"/>, document.getElementById('searchBar'));
+React.render(<RecipeBox url="/api/recipes/"/>, document.getElementById('searchBar'));
 
 
 
