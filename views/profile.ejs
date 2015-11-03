@@ -60,8 +60,8 @@
    <div class="col-md-10 col-md-offset-1">
         <div class="row myborder">
           <form action="http://localhost:4000/api/vendors" method="post">
-            <h4 style="color: #A3CE0C ; margin: initial; margin-bottom: 10px;">Enter Your Information!</h4><hr>
-            <div class="col-md-6">
+            <h3 style="color: #A3CE0C ; margin: initial; margin-bottom: 10px;">Enter Your Information and What Products You Offer!</h3><hr>
+            <div class="col-md-6" style="margin-top: 15px;">
            <div class="input-group margin-bottom-20">
                <span class="input-group-addon"><i class="glyphicon glyphicon-queen mycolor"></i></span>
                <input size="60" maxlength="255" class="form-control" placeholder="Vendor Name" name="vendorName" id="vendorName" type="text">                                    </div>
@@ -78,9 +78,11 @@
                <span class="input-group-addon"><i class="glyphicon glyphicon-lock mycolor"></i></span>
                <input size="60" maxlength="255" class="form-control" placeholder="What type of produce do you provide?" name="produce" id="produce" type="text">                                    </div>
             </div>
+
+
             <!-- Vegetables-->
         <div class="col-md-2">
-          <h3>Vegetables</h3>
+          <h4>Vegetables</h4>
             <div>
                 <input type="checkbox" name="veggies[]" id="veggies" ref="veggieTypes" value="artichoke"/>Artichoke</div>
             <div>
@@ -110,7 +112,7 @@
         </div>
                 <!-- Fruits-->
         <div class="col-md-2">
-          <h3>Fruit</h3>  
+          <h4>Fruit</h4>  
             <div>
                 <input type="checkbox" name="fruits[]" id="fruits" ref="fruitTypes" value="apple"/>Apple</div>
             <div>
@@ -139,25 +141,45 @@
                 <input type="checkbox" name="fruits[]" id="fruits" ref="fruitTypes" value="watermelons"/>Watermelons</div>
         </div>
         <div class="col-md-2">
-          <h3>Meats</h3>
+          <h4>Meats</h4>
 
+           
             <div>
                 <input type="checkbox" name="meats[]" id="meats" ref="meatTypes" value="chicken"/>Chicken</div>
+            
             <div>
+                <input type="checkbox" name="meats[]" id="meats" ref="meatTypes" value="turkey"/>Turkey</div>
+             <div>
                 <input type="checkbox" name="meats[]" id="meats" ref="meatTypes" value="beef"/>Beef</div>
-            <div>
-                <input type="checkbox" name="other[]" id="other" ref="otherTypes" value="other"/>Spices</div>
-              
-                
+             <div>
+                <input type="checkbox" name="meats[]" id="meats" ref="meatTypes" value="bison"/>Bison</div>  
+             <div>
+                <input type="checkbox" name="meats[]" id="meats" ref="meatTypes" value="elk"/>Elk</div> 
+             <div>
+                <input type="checkbox" name="meats[]" id="meats" ref="meatTypes" value="beef"/>Salmon</div>   
+             <div>
+                <input type="checkbox" name="meats[]" id="meats" ref="meatTypes" value="trout"/>Trout</div>
+             <div>
+                <input type="checkbox" name="meats[]" id="meats" ref="meatTypes" value="eggs"/>Eggs</div>
+             <div>
+                <input type="checkbox" name="meats[]" id="meats" ref="meatTypes" value="snails"/>Snails</div>
+              </div>
+            
+             <div>
+             <div class="col-md-2">
+             <h4>Other</h4> 
+             </div>
 
-       <div class="col-md-2"></div>
-           
-           
-           <div class="row">
+            <div>
+            <div class="row" style="margin-top:10px;">
                <div class="col-md-12">
-                   <button class="btn-u pull-left" type="submit">Sign Up</button>
+                   <button class="btn-u pull-right" type="submit">Submit</button>
                </div>
            </div>
+            </div>
+           
+           
+           
           </form>
        </div>
        <div class="col-md-2"></div>
