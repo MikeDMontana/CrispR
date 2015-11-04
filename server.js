@@ -1,6 +1,6 @@
 // *******************************  Require Concepts Block **************** \\
 
-var express        = require('express'), 
+var express    = require('express'), 
 app            = express(),
 path           = require('path'),
 
@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded());
 
 
 
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 3000);
 
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
@@ -65,8 +65,8 @@ app.use('/api', vendorRoutes);
 
 app.use('/api', router);
 
-app.use('/api/recipes/:foodItem', recipeRoutes);
-// app.use('/api/ingredients/:recipeId', recipeRoutes.fetchIngredients);
+app.use('/api/recipes/:foodItem', recipeRoutes.fetchRecipes);
+app.use('/api/ingredients/:rId', recipeRoutes.fetchIngredients);
 
 
 
