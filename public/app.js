@@ -66,7 +66,7 @@ var RecipeList = React.createClass({
     var recipeData = this.props.data.map(function(r) { 
       return ( 
         <div>
-          <Recipe r={r}, url="/api/recipe/"/>
+          <Recipe r={r}/>
         </div>
       ); 
     })
@@ -93,8 +93,8 @@ var Recipe  = React.createClass({
     },
 
     loadIngredientsFromServer: function(rId){
-      var url2="/api/recipe/"
-      var rId = this.props.r.recipe_id
+      var url2="/api/ingredients/"
+      var rId = rId
         $.ajax({
           url: url2 + rId,
           dataType: 'json',
@@ -131,7 +131,7 @@ var Recipe  = React.createClass({
               </div>
             </div>
           </div>
-          <RecipeIngredients ingredientsDisplay={this.state.liked}/>
+          <RecipeIngredients ingredientsData={this.state.ingredientsData} ingredientsDisplay={this.state.liked}/>
         </div>
       );
     }
@@ -140,7 +140,7 @@ var Recipe  = React.createClass({
 var RecipeIngredients  = React.createClass({
 
     render: function() {
-      var ingredientList = "this is a word"; 
+      var ingredientList = this.props.ingredientsData; 
          return !this.props.ingredientsDisplay ? <div/> : (
           <div>
             {ingredientList}
